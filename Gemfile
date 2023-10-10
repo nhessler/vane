@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
+# Added o the top of the gem file per dotenv install recommendation
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.0"
 
@@ -66,3 +69,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
