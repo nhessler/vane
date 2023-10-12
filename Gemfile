@@ -70,3 +70,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+
+gem "faraday", "~> 2.7"
