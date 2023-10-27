@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/geo/1.0/zip?appid=<OPEN_WEATHER_API_KEY>&zip=abcde%2CUK
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      server:
+      - openresty
+      date:
+      - Fri, 27 Oct 2023 16:39:33 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '35'
+      connection:
+      - keep-alive
+      x-cache-key:
+      - "/geo/1.0/zip?zip=abcde%2cuk"
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"cod":"404","message":"not found"}'
+  recorded_at: Fri, 27 Oct 2023 16:39:33 GMT
+recorded_with: VCR 6.2.0

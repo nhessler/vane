@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/geo/1.0/zip?appid=<OPEN_WEATHER_API_KEY>&zip=78759%2CUS
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - openresty
+      date:
+      - Fri, 27 Oct 2023 15:50:07 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '75'
+      connection:
+      - keep-alive
+      x-cache-key:
+      - "/geo/1.0/zip?zip=78759%2cus"
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"zip":"78759","name":"Austin","lat":30.4036,"lon":-97.7526,"country":"US"}'
+  recorded_at: Fri, 27 Oct 2023 15:50:07 GMT
+recorded_with: VCR 6.2.0

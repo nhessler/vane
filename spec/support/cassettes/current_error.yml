@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&lat=78759&lon=US&units=imperial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      server:
+      - openresty
+      date:
+      - Fri, 27 Oct 2023 16:25:00 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '40'
+      connection:
+      - keep-alive
+      x-cache-key:
+      - "/data/2.5/weather?lat=78759&lon=&units=imperial"
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"cod":"400","message":"wrong latitude"}'
+  recorded_at: Fri, 27 Oct 2023 16:25:00 GMT
+recorded_with: VCR 6.2.0

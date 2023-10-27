@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<OPEN_WEATHER_API_KEY>&lat=30.4036&lon=-97.7526&units=imperial
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.7.11
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - openresty
+      date:
+      - Fri, 27 Oct 2023 16:19:34 GMT
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '468'
+      connection:
+      - keep-alive
+      x-cache-key:
+      - "/data/2.5/weather?lat=30.4&lon=-97.75&units=imperial"
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET, POST
+    body:
+      encoding: UTF-8
+      string: '{"coord":{"lon":-97.7526,"lat":30.4036},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50d"}],"base":"stations","main":{"temp":80.71,"feels_like":86.49,"temp_min":78.51,"temp_max":82.81,"pressure":1020,"humidity":84},"visibility":9656,"wind":{"speed":6.91,"deg":180},"clouds":{"all":100},"dt":1698423418,"sys":{"type":2,"id":2009803,"country":"US","sunrise":1698410481,"sunset":1698450492},"timezone":-18000,"id":4701458,"name":"Jollyville","cod":200}'
+  recorded_at: Fri, 27 Oct 2023 16:19:34 GMT
+recorded_with: VCR 6.2.0
