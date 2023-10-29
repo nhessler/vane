@@ -72,6 +72,9 @@ group :test do
 
   # added for mocking requests in tests
   gem "vcr"
+
+  # added for rails controller matchers that help test controller functionality
+  gem 'rails-controller-testing'
 end
 
 # Added for client requests to external service apis

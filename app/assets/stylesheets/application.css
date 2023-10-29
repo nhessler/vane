@@ -13,3 +13,238 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --white: #FFFFFF;
+  --lgrey: #BBBBBB;
+  --dgrey: #666666;
+  --black: #000000;
+  --font-size: 1.125rem;
+  --nanum: 'Nanum Gothic', sans-serif;
+}
+
+html, body {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* global styles */
+body {
+  padding: 0;
+  margin: 0 auto;
+  font-family: var(--nanum);
+  background-color: var(--white);
+  color: var(--slate);
+  font-size: var(--font-size);
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+#grid {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 366px, 234px, 1fr, 1fr, auto;
+}
+
+header {
+  padding: 0 2.5rem;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+footer {
+  padding: 0 2.5rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  color: var(--white);
+  background-color: var(--black);
+  text-align: center;
+}
+
+footer a {
+  color: var(--lgrey);
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+.block {
+  padding: 0 1.5rem;
+  margin: 1rem 0;  
+}
+
+.content {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  column-gap: 3rem;
+  max-width: 18.75rem;
+}
+
+#search div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+  gap: 1rem;
+}
+
+input[type=text], select {
+  padding: .5rem;
+  margin: .5rem;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid var(--lgrey);
+  font-size: inherit;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+input[type=submit] {
+ padding: .75rem;
+ margin: .5rem;
+ border: 0;
+ border-radius: 0;
+ font-size: inherit;
+ width: 100%;
+ -webkit-appearance: none;
+}
+
+#flash div {
+  width: 100%;
+  text-align: center;
+}
+
+#flash .alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: .5rem;
+}
+
+#clear a {
+  text-decoration: none;  
+  color: var(--black);
+  padding: .75rem;
+  margin: .5rem;
+  border: 0;
+  width: 100%;
+  background-color: #EFEFEF;
+  text-align: center;
+}
+
+#location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+#location-name {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+#location-info {
+  font-size: 1rem;
+}
+
+.card {
+  border: 2px solid var(--lgrey);
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.card-datetime {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-weather-image {
+  height: 9rem;
+}
+
+.card-temps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%
+}
+
+.card-temp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.temp-main {
+  font-size: 3rem;
+  font-weight: bold;  
+}
+
+.table-weather-image {
+  height: 1rem;
+}
+
+#forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.point-forecast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: .5rem;
+}
+
+.point-forecast-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: .5rem;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.point-forecast img {
+  text-align: center;
+}
+
+.point-forecast:nth-child(odd) {
+  background-color: #DDDDDD;
+}
+

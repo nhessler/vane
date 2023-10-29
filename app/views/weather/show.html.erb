@@ -1,0 +1,117 @@
+<div id="grid">
+  <header>
+    <%= image_tag "weather_vane.png" %>
+    <h1>Vane</h1>
+  </header>
+  <% if @details.blank? %>
+    <section class="block">
+      <section id="search" class="content">
+	<%= form_with controller: :weather, action: :show, method: :get do |form| %>
+        <div>
+          <%= form.label :postal_code, "Postal Code", hidden: true %>
+          <%= form.text_field :postal_code, placeholder: "Postal Code", value: @postal_code %>
+        </div>
+        <div>
+          <%= form.label :country_code, "Country", hidden: true %>
+          <%= form.select :country_code, @countries, selected: @country_code %>
+        </div>
+        <div>
+	  <%= form.submit "Get Forecast" %>
+        </div>
+	<% end %>
+      </section>
+    </section>
+    <section class="block">
+      <section id="flash" class="content">
+        <% flash.each do |type, msg| %>
+          <div class="<%= type %>">
+            <%= msg %>
+          </div>
+	<% end %>
+      </section>
+    </section>
+  <% else %>
+    <section class="block">
+      <section id="clear" class="content" >
+	<%= link_to "Clear", root_path, classs: "button"%>
+      </section>
+    </section>
+    <section class="block">
+      <section id="location" class="content">
+	<div id="location-name">
+          <%= @details[:location][:name] %>
+	</div>
+	<div id="location-info">
+	  (<%= @details[:location][:postal_code] %>, <%= @details[:location][:country_code] %>)
+	</div>
+      </section>
+    </section>
+    <section class="block">
+      <section id="current" class="content">
+	<article class="card">
+	  <div class="card-datetime">
+	    <span class="card-date">
+	      <%= friendly_date(@details[:current][:time]) %>
+	    </span>
+	    <span class="card-time">
+	      <%= friendly_time(@details[:current][:time]) %>
+	    </span>
+	  </div>
+	  <%= image_tag "#{@details[:current][:icon]}.svg", class: "card-weather-image" %>
+	  <div class="card-temps">
+	    <div class="card-temp temp-min">
+	      <span>Lo</span>
+	      <span><%= temp(@details[:current], mod: :min) %></span>
+	    </div>
+	    <div class="card-temp temp-main">
+	      <span><%= temp(@details[:current]) %></span>
+	    </div>
+	    <div class="card-temp temp-max">
+	      <span>Hi</span>
+	      <span><%= temp(@details[:current], mod: :max) %></span>
+	    </div>
+	  </div>
+	  <div class="card-description">
+	    <%= @details[:current][:description] %>
+	  </div>
+	</article>
+      </section>
+    </section>
+    <section class="block">
+      <section id="forecast" class="content table">
+
+	<%# in the enumerable below previous_point_day is used to determine %>
+	<%# if a date should be added to the line. we start with 0 as it %>
+	<%# guarantees that the first line will get a date since 0 is not %>
+	<%# possible in the Time#yday calclation %>
+
+	<% @details[:forecast].inject(0) do |previous_point_day, point_detail| %>
+	  <% if previous_point_day != point_detail[:time].yday %>
+	    <article class="point-forecast-date">
+	      <span><%= friendly_date(point_detail[:time]) %></span>
+	    </article>
+	  <% end %>
+          <article class="point-forecast">
+            <span><%= temp(point_detail) %></span>
+            <%= image_tag "#{point_detail[:icon]}.svg", class: "table-weather-image" %>
+	      <span class="point-hour">
+		<%= friendly_hour(point_detail[:time]) %>
+	      </span>
+	  </article>
+	  
+	  <%# make sure we return the current day back into the enumerable %>
+	  <% point_detail[:time].yday %>
+	<% end %>
+      </section>
+    </section>
+  <% end %>
+  <footer>
+    <section id="attribution">
+      <p>
+	<a href="https://thenounproject.com/icon/weather-vane-200297/">"Weather Vane"</a> image by <a href="https://thenounproject.com/Simon%20Child/">Simon Child</a> from <a href="https://thenounproject.com">Noun Project</a> is licensed under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
+      </p>
+    </section>
+  </footer>
+</div>
+
+  
