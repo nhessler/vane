@@ -37,15 +37,17 @@ The time given in any forecast is the local time for the location of the forecas
 
 OpenWeather appears to do some caching as well and the current weather can be a few minutes behind. To that end, cache calculations are based on the time given by OpenWeather both for current weather and the forecast weather.
 
+OpenWeather is pretty brittle and strict with requirements such as postal code being a certain way (e.g. US zips must be 5 numbers cannot handle the additional '-NNNN' syntax, and it was also noticed for the UK where "SW1A 2" is, I believe, an acceptable postal code but OpenWeather would only accept "SW1A" and "SW1".)
+
 The current page was designed to be mobile friendly. with a stark, gothic aesthetic
 
 ## Future improvements
 
 It would be nice to save a list of recent searches, maybe just the last 10 successful searches
 
-A better geocoding solution. I went with OpenWeather, because it didn't require payment info so I couldn't be charged. That said, the geocoding isn't the best. might be good to add a service that could handle more ambiguity in searches and provide suggestions instead of just failing. that said, it would probably mean not using openweather anymore either as it's pretty strict with requirements such as postal code being a certain way (e.g. US zips must be 5 numbers cannot handle the additional '-NNNN' syntax, and it was also noticed for the UK where "SW1A 2" is, I believe, an acceptable postal code but OpenWeather would only accept "SW1A" and "SW1".
+A better geocoding solution. I went with OpenWeather, because it didn't require payment info so I couldn't be charged. That said, the geocoding isn't the best. might be good to add a service that could handle more ambiguity in searches and provide suggestions instead of just failing. that said, it would probably mean not using openweather anymore either as explained in the **Things To Note** section.
 
-add hotwire to the experience to avoid full page refreshes, or separate the form and result into 2 endpoints that would allow for a better url experience when showing weather forecast such as `weather/:postal_code/:country_code
+use hotwire & stimulus to create a better, more modern experience and avoid full page refreshes. Or, separate the form and result into 2 endpoints that would allow for a better url experience when showing weather forecast info such as `weather/:postal_code/:country_code`
 
 ## Deployment Instructions
 
