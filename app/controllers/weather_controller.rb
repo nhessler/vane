@@ -29,7 +29,7 @@ class WeatherController < ApplicationController
   def get_details
     if @data.blank?
       @status = :ok
-    elsif @data[:success]
+    elsif @data["success"]
       @details = WeatherDetailer.call(@data)
       @status = :ok
     else

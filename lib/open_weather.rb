@@ -67,6 +67,12 @@ class OpenWeather
   end
   
   def weather(postal_code, country_code)
+    cache_key = "#{postal_code}-#{country_code}"
+
+    if Rails.cache.exist?(cache_key)
+      return JSON.parse(Rails.cache.read(cache_key)).merge({"cached" => true})
+    end
+   
     location = geocode(postal_code, country_code)
     
     return location unless location["success"]
@@ -80,14 +86,18 @@ class OpenWeather
     # this assumes these details do not change between
     # calls to the current and forecast endpoints
     meta = {
-      temp_units: UNIT_OPTIONS[units][:unit],
-      timezone: current_weather["timezone"]}
+      "temp_units" => UNIT_OPTIONS[units][:unit],
+      "timezone" => current_weather["timezone"]}
     
-    {location: location,
-     meta: meta,
-     current: current_weather,
-     forecast: forecast_weather,
-     success: true}
+    data = {"location" => location,
+            "meta" => meta,
+            "current" => current_weather,
+            "forecast" => forecast_weather,
+            "success" => true}
+
+    Rails.cache.write(cache_key, data.to_json, expires_at: expire_cache_at(data))
+
+    data.merge({"cached" => false})
   end
   
   def geocode(postal_code, country_code)
@@ -126,5 +136,20 @@ class OpenWeather
       json["status"] = response.status
       json["type"] = :forecast
     end
+  end
+  
+  def expire_cache_at(data, **opts)
+    # to avoid issues with the vcr cassettes and expiry times we return a
+    # guaranteed time in the future for the testng environment
+    return Time.now + 10.seconds if Rails.env.test?
+    
+    first_forecast = data["forecast"]["list"].first
+
+    current_time = Time.at(data["current"]["dt"], in: data["meta"]["timezone"])
+    forecast_time = Time.at(first_forecast["dt"], in: data["meta"]["timezone"])
+
+    cache_time = current_time + 30.minutes
+    
+    cache_time  < forecast_time ? cache_time : forecast_time
   end
 end

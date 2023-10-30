@@ -44,6 +44,9 @@
 	<div id="location-info">
 	  (<%= @details[:location][:postal_code] %>, <%= @details[:location][:country_code] %>)
 	</div>
+	<% if @details[:cached] %>
+	  <div>Cached</div>
+	<% end %>
       </section>
     </section>
     <section class="block">

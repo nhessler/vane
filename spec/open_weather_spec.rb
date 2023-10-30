@@ -68,7 +68,7 @@ RSpec.describe OpenWeather do
     it "responds with all the location and weather data given a good postal_code and country_code" do
       response = VCR.use_cassette('weather_success') { open_weather.weather("55555", "US") }
 
-      expect(response).to include(:location, :meta, :current, :forecast, :success)
+      expect(response).to include("location", "meta", "current", "forecast", "success", "cached")
     end
 
     it "returns a 404 error when unable to determine location" do
