@@ -117,6 +117,10 @@ input[type=text], select {
   font-size: inherit;
   width: 100%;
   -webkit-appearance: none;
+  color: var(--black);
+  background-color: var(--white);
+  font-weight: normal;
+  font-family: var(--nanum);
 }
 
 input[type=submit] {
@@ -127,6 +131,10 @@ input[type=submit] {
  font-size: inherit;
  width: 100%;
  -webkit-appearance: none;
+ color: var(--black);
+ background-color: #EFEFEF;
+ font-weight: normal;
+ font-family: var(--nanum);
 }
 
 #flash div {
@@ -141,7 +149,7 @@ input[type=submit] {
 }
 
 #clear a {
-  text-decoration: none;  
+  text-decoration: none;
   color: var(--black);
   padding: .75rem;
   margin: .5rem;
