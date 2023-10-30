@@ -131,7 +131,6 @@ input[type=submit] {
  font-size: inherit;
  width: 100%;
  -webkit-appearance: none;
- color: var(--black);
  background-color: #EFEFEF;
  font-weight: normal;
  font-family: var(--nanum);
